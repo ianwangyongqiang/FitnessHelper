@@ -1,7 +1,5 @@
-package com.skycopyhot.fitnesshelper;
+package com.skycopyhot.fitnesshelper.ui;
 
-import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,11 +7,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.TextView;
+
+import com.skycopyhot.fitnesshelper.BaseActivity;
+import com.skycopyhot.fitnesshelper.IUICallback;
+import com.skycopyhot.fitnesshelper.R;
+import com.skycopyhot.fitnesshelper.TaskMessage;
 
 
+public class MainActivity extends BaseActivity implements IUICallback{
 
-public class MainActivity extends Activity {
+    private static TextView mText;
+    private static final int ID_CHANGE_TEXT = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,7 @@ public class MainActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        post(new TaskMessage(ID_CHANGE_TEXT, this), 5000);
     }
 
 
@@ -40,10 +46,14 @@ public class MainActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCallback(int id, Bundle bundle) {
+        if (id == ID_CHANGE_TEXT) {
+            mText.setText(R.string.app_name);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -58,6 +68,7 @@ public class MainActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            mText = (TextView) rootView.findViewById(R.id.main_text);
             return rootView;
         }
     }
