@@ -2,6 +2,7 @@ package com.skycopyhot.fitnesshelper;
 
 import android.app.Application;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Message;
 
 /**
@@ -9,13 +10,17 @@ import android.os.Message;
  */
 public class FitnessHelperApp extends Application implements Handler.Callback{
 
-    private static final String FITNESS_UI_THREAD = "fitness_ui_thread";
+    private static final String FITNESS_BG_THREAD = "fitness_bg_thread";
     private Handler mUIHandler;
+    private Handler mBGHandler;
 
     @Override
     public void onCreate() {
         super.onCreate();
         mUIHandler = new Handler(getMainLooper(), this);
+        HandlerThread bgThread = new HandlerThread(FITNESS_BG_THREAD);
+        mBGHandler = new Handler(bgThread.getLooper(), this);
+        bgThread.start();
     }
 
     @Override
@@ -29,5 +34,9 @@ public class FitnessHelperApp extends Application implements Handler.Callback{
 
     public Handler getUIHandler() {
         return mUIHandler;
+    }
+
+    public Handler getBGHandler() {
+        return mBGHandler;
     }
 }

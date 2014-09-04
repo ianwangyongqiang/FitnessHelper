@@ -25,8 +25,8 @@ public abstract class BaseActivity extends Activity {
         Message message = null;
         if (taskMsg.getCallback() instanceof IUICallback) {
             message = mApp.getUIHandler().obtainMessage();
-        } else {
-            //TODO
+        } else if (taskMsg.getCallback() instanceof IBGCallback) {
+            message = mApp.getBGHandler().obtainMessage();
         }
         if (message != null) {
             message.what = taskMsg.getId();
