@@ -19,8 +19,8 @@ public class FitnessHelperApp extends Application implements Handler.Callback{
         super.onCreate();
         mUIHandler = new Handler(getMainLooper(), this);
         HandlerThread bgThread = new HandlerThread(FITNESS_BG_THREAD);
-        mBGHandler = new Handler(bgThread.getLooper(), this);
         bgThread.start();
+        mBGHandler = new Handler(bgThread.getLooper(), this);
     }
 
     @Override

@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity implements IUICallback{
     @Override
     public void onCallback(int id, Bundle bundle) {
         if (id == ID_CHANGE_TEXT) {
-            mText.setText(R.string.app_name);
+            mText.setText(R.string.action_settings);
         }
     }
 
