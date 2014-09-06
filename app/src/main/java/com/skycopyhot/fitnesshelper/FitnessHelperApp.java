@@ -14,6 +14,8 @@ public class FitnessHelperApp extends Application implements Handler.Callback{
     private Handler mUIHandler;
     private Handler mBGHandler;
 
+    private boolean mInitialized = false;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -29,6 +31,10 @@ public class FitnessHelperApp extends Application implements Handler.Callback{
             ((TaskMessage) msg.obj).getCallback().onCallback(msg.what, null);
             return true;
         }
+
+        if (msg != null) {
+            msg.recycle();
+        }
         return false;
     }
 
@@ -38,5 +44,13 @@ public class FitnessHelperApp extends Application implements Handler.Callback{
 
     public Handler getBGHandler() {
         return mBGHandler;
+    }
+
+    public boolean isInitialized() {
+        return mInitialized;
+    }
+
+    public void startInitilize() {
+        mInitialized = true;
     }
 }

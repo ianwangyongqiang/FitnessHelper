@@ -1,6 +1,7 @@
 package com.skycopyhot.fitnesshelper.ui;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.skycopyhot.fitnesshelper.BaseActivity;
+import com.skycopyhot.fitnesshelper.FitnessHelperApp;
 import com.skycopyhot.fitnesshelper.IUICallback;
 import com.skycopyhot.fitnesshelper.R;
 import com.skycopyhot.fitnesshelper.TaskMessage;
