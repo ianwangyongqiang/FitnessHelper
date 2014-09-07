@@ -5,13 +5,15 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.skycopyhot.fitnesshelper.FitnessHelperApp;
-
 /**
  * Created by skycopyhot on 6/9/14.
  */
 public class FitnessDBHelper extends SQLiteOpenHelper {
 
+    private static final int DB_VERSION = 1;
+    private static final String DB_NAME = "fitness_helper_db";
+
+    public static final Object SYNC_OBJ = new Object();
 
     /**
      * Create a helper object to create, open, and/or manage a database.
@@ -28,6 +30,10 @@ public class FitnessDBHelper extends SQLiteOpenHelper {
      */
     public FitnessDBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+    }
+
+    public FitnessDBHelper(Context context) {
+        this(context, DB_NAME, null, DB_VERSION);
     }
 
     /**
@@ -58,7 +64,8 @@ public class FitnessDBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL("CREATE TABLE IF NOT EXISTS fitness" +
+                " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, detail INTEGER, time VARCHAR, other VARCHAR)");
     }
 
     /**
