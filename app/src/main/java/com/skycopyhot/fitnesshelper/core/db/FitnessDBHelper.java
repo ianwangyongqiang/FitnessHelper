@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by skycopyhot on 6/9/14.
  */
-public class FitnessDBHelper extends SQLiteOpenHelper {
+public class FitnessDBHelper extends SQLiteOpenHelper implements IDBConstant{
 
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "fitness_helper_db";
@@ -64,8 +64,13 @@ public class FitnessDBHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS fitness" +
+        //Global sheet
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + SHEET_NAME_GLOBAL +
                 " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, detail INTEGER, time VARCHAR, other VARCHAR)");
+        //Push up sheet
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + SHEET_NAME_PUSH_UP +
+                " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, start VARCHAR, end VARCHAR, count INTEGER, type INTEGER)");
+
     }
 
     /**
