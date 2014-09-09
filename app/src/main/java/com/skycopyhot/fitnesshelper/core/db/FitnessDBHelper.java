@@ -69,7 +69,7 @@ public class FitnessDBHelper extends SQLiteOpenHelper implements IDBConstant{
                 " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, detail INTEGER, time VARCHAR, other VARCHAR)");
         //Push up sheet
         db.execSQL("CREATE TABLE IF NOT EXISTS " + SHEET_NAME_PUSH_UP +
-                " (_id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR, start VARCHAR, end VARCHAR, count INTEGER, type INTEGER)");
+                " (_id INTEGER PRIMARY KEY AUTOINCREMENT, other VARCHAR, start VARCHAR, end VARCHAR, count INTEGER, type INTEGER)");
 
     }
 
