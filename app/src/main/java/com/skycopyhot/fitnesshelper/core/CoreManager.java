@@ -40,10 +40,11 @@ public class CoreManager implements IBundleConstant {
             }
             Bundle result = new Bundle();
             result.putStringArrayList(ICoreDataCallback.KEY_ARRAY_STRING + ICoreDataCallback.KEY_NAME, names);
-
             return true;
         } else if (VALUE_SHEET_PUSH_UP.equals(sheet)) {
 
+
+            
             return true;
         } else {
             return false;
