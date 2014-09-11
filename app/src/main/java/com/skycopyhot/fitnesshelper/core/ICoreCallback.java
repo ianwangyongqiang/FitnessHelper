@@ -16,4 +16,8 @@ public interface ICoreCallback {
     public static final String KEY_TIME = "_TIME";
     public static final String KEY_DETAIL = "_DETAIL";
     public static final String KEY_OTHER = "_OTHER";
+    public static final String KEY_START = "_START";
+    public static final String KEY_END = "_END";
+    public static final String KEY_COUNT = "_COUNT";
+    public static final String KEY_TYPE = "_TYPE";
 }

@@ -11,7 +11,7 @@ public interface ICoreDataCallback extends ICoreCallback {
     /**
      * call back from core
      * @param resultCode
-     * @param bundle
+     * @param data
      */
-    public void onCoreDataCallback(int resultCode, Bundle bundle);
+    public void onCoreDataCallback(int resultCode, DataWrapper wrapper);
 }

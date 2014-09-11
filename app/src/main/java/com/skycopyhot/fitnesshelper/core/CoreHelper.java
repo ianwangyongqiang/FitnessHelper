@@ -1,6 +1,7 @@
 package com.skycopyhot.fitnesshelper.core;
 
 import android.content.Context;
+import android.os.Bundle;
 
 /**
  * Created by skycopyhot on 6/9/14.
@@ -13,11 +14,13 @@ public class CoreHelper {
         mManager = new CoreManager(context);
     }
 
-    public static boolean queryAllGlobalData(ICoreCallback callback) {
+    public static void queryAllGlobalData(ICoreDataCallback callback) {
         if (mManager == null) {
-            return false;
+            callback.onCoreDataCallback(ICoreCallback.RESULT_CODE_FAILURE_OTHER, null);
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putString(IBundleConstant.KEY_SHEET, IBundleConstant.VALUE_SHEET_GLOBAL);
+            mManager.queryData(bundle, callback);
         }
-
-        return true;
     }
 }
