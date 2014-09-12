@@ -5,12 +5,14 @@ package com.skycopyhot.fitnesshelper.core.model;
  */
 public class GlobalData {
 
+    private int from;
     private long time;
     private String name;
     private int detail;
     private String other;
 
-    public GlobalData(String name, String time, int detail, String other) {
+    public GlobalData(int from, String name, String time, int detail, String other) {
+        this.from = from;
         this.name = name;
         this.time = Long.parseLong(time);
         this.detail = detail;
@@ -31,5 +33,9 @@ public class GlobalData {
 
     public String getOther() {
         return other;
+    }
+
+    public int getFrom() {
+        return from;
     }
 }

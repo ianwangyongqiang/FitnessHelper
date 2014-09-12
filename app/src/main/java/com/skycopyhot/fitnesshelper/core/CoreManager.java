@@ -25,7 +25,7 @@ public class CoreManager implements IBundleConstant {
         mPushUpDB = new PushUpDB(context);
     }
 
-    public void queryData(Bundle bundle, ICoreDataCallback callback) {
+    public void getData(Bundle bundle, ICoreDataCallback callback) {
         String sheet = bundle.getString(KEY_SHEET);
         if (VALUE_SHEET_GLOBAL.equals(sheet)) {
             List<GlobalData> result = mGlobalDB.queryAll();

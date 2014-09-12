@@ -41,7 +41,8 @@ public class GlobalDB extends BaseDB{
                             time = "0";
                         }
                         String other = cursor.getString(cursor.getColumnIndex("other"));
-                        GlobalData data = new GlobalData(name, time, detail, other);
+                        int from = cursor.getInt(cursor.getColumnIndex("_id"));
+                        GlobalData data = new GlobalData(from, name, time, detail, other);
                         result.add(data);
                     }
                 } finally {
@@ -53,6 +54,16 @@ public class GlobalDB extends BaseDB{
 
         }
         return result;
+    }
+
+    public List<GlobalData> query(int from, int size) {
+        List<GlobalData> result = new ArrayList<GlobalData>();
+        synchronized (FitnessDBHelper.SYNC_OBJ) {
+            SQLiteDatabase db = mHelper.getWritableDatabase();
+//TODO            Cursor cursor = db.query(SHEET_NAME_GLOBAL, )
+        }
+
+        return  result;
     }
 
     /**
