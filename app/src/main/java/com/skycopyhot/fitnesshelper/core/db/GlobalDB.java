@@ -60,7 +60,26 @@ public class GlobalDB extends BaseDB{
         List<GlobalData> result = new ArrayList<GlobalData>();
         synchronized (FitnessDBHelper.SYNC_OBJ) {
             SQLiteDatabase db = mHelper.getWritableDatabase();
-//TODO            Cursor cursor = db.query(SHEET_NAME_GLOBAL, )
+            Cursor cursor = db.query(SHEET_NAME_GLOBAL, null, "_id>?", new String[]{String.valueOf(from - 1)}, null, null, null, String.valueOf(size));
+            if (db != null && cursor != null) {
+                try {
+                    while (cursor.moveToNext()) {
+                        String name = cursor.getString(cursor.getColumnIndex("name"));
+                        int detail = cursor.getInt(cursor.getColumnIndex("detail"));
+                        String time = cursor.getString(cursor.getColumnIndex("time"));
+                        if (TextUtils.isEmpty(time)) {
+                            time = "0";
+                        }
+                        String other = cursor.getString(cursor.getColumnIndex("other"));
+                        int _from = cursor.getInt(cursor.getColumnIndex("_id"));
+                        GlobalData data = new GlobalData(_from, name, time, detail, other);
+                        result.add(data);
+                    }
+                } finally {
+                    db.close();
+                    cursor.close();
+                }
+            }
         }
 
         return  result;

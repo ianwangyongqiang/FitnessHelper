@@ -49,6 +49,31 @@ public class PushUpDB extends BaseDB {
         return result;
     }
 
+    public List<PushUpData> query(int from, int size) {
+        List<PushUpData> result = new ArrayList<PushUpData>();
+        synchronized (FitnessDBHelper.SYNC_OBJ) {
+            SQLiteDatabase db = mHelper.getWritableDatabase();
+            Cursor cursor = db.query(SHEET_NAME_PUSH_UP, null, "_id>?", new String[]{String.valueOf(from - 1)}, null, null, null, String.valueOf(size));
+            if (db != null && cursor != null) {
+                try {
+                    while (cursor.moveToNext()) {
+                        String other = cursor.getString(cursor.getColumnIndex("other"));
+                        String start = cursor.getString(cursor.getColumnIndex("start"));
+                        String end = cursor.getString(cursor.getColumnIndex("end"));
+                        int count = cursor.getInt(cursor.getColumnIndex("count"));
+                        int type = cursor.getInt(cursor.getColumnIndex("type"));
+                        PushUpData data = new PushUpData(other, start, end, count, type);
+                        result.add(data);
+                    }
+                } finally {
+                    db.close();
+                    cursor.close();
+                }
+            }
+        }
+        return result;
+    }
+
     /**
      * insert the push up data
      * @param data

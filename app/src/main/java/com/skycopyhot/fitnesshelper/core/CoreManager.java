@@ -27,8 +27,15 @@ public class CoreManager implements IBundleConstant {
 
     public void getData(Bundle bundle, ICoreDataCallback callback) {
         String sheet = bundle.getString(KEY_SHEET);
+        int from = bundle.getInt(KEY_FROM);
+        int size = bundle.getInt(KEY_SIZE);
         if (VALUE_SHEET_GLOBAL.equals(sheet)) {
-            List<GlobalData> result = mGlobalDB.queryAll();
+            List<GlobalData> result;
+            if (from == 0 && size == VALUE_SIZE_ALL) {
+                result = mGlobalDB.queryAll();
+            } else {
+                result = mGlobalDB.query(from, size);
+            }
             ArrayList<String> names = new ArrayList<String>();
             ArrayList<Long> times = new ArrayList<Long>();
             ArrayList<Integer> details = new ArrayList<Integer>();
@@ -46,7 +53,12 @@ public class CoreManager implements IBundleConstant {
             wrapper.setStrings(ICoreCallback.KEY_ARRAY_STRING + ICoreCallback.KEY_OTHER, others);
             callback.onCoreDataCallback(ICoreCallback.RESULT_CODE_SUCCESS, wrapper);
         } else if (VALUE_SHEET_PUSH_UP.equals(sheet)) {
-            List<PushUpData> result = mPushUpDB.queryAll();
+            List<PushUpData> result;
+            if (from == 0 && size == VALUE_SIZE_ALL) {
+                result = mPushUpDB.queryAll();
+            } else {
+                result = mPushUpDB.query(from, size);
+            }
             ArrayList<String> others = new ArrayList<String>();
             ArrayList<Long> starts = new ArrayList<Long>();
             ArrayList<Long> ends = new ArrayList<Long>();
