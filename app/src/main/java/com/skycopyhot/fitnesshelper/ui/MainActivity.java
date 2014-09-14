@@ -19,19 +19,17 @@ import com.skycopyhot.fitnesshelper.TaskMessage;
 
 public class MainActivity extends BaseActivity implements IUICallback{
 
-    private static TextView mText;
-    private static final int ID_CHANGE_TEXT = 0;
+//    private static TextView mText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
-        post(new TaskMessage(ID_CHANGE_TEXT, this), 5000);
+//        if (savedInstanceState == null) {
+//            getFragmentManager().beginTransaction()
+//                    .add(R.id.container, new PlaceholderFragment())
+//                    .commit();
+//        }
     }
 
 
@@ -53,25 +51,23 @@ public class MainActivity extends BaseActivity implements IUICallback{
 
     @Override
     public void onCallback(int id, Bundle bundle) {
-        if (id == ID_CHANGE_TEXT) {
-            mText.setText(R.string.action_settings);
-        }
+
     }
 
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            mText = (TextView) rootView.findViewById(R.id.main_text);
-            return rootView;
-        }
-    }
+//    public static class PlaceholderFragment extends Fragment {
+//
+//        public PlaceholderFragment() {
+//        }
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                Bundle savedInstanceState) {
+//            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+//            mText = (TextView) rootView.findViewById(R.id.main_text);
+//            return rootView;
+//        }
+//    }
 }

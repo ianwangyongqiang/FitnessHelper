@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 
+import com.skycopyhot.fitnesshelper.core.CoreHelper;
+
 /**
  * Created by skycopyhot on 4/9/14.
  */
@@ -23,6 +25,7 @@ public class FitnessHelperApp extends Application implements Handler.Callback{
         HandlerThread bgThread = new HandlerThread(FITNESS_BG_THREAD);
         bgThread.start();
         mBGHandler = new Handler(bgThread.getLooper(), this);
+        CoreHelper.init(this);
     }
 
     @Override
